@@ -21,7 +21,7 @@ module.exports = {
     ]
   },
   output: {
-    path: r('../mina'),
+    path: r('../dist'),
     filename: '[name].js'
   },
   resolve: {
@@ -83,7 +83,7 @@ module.exports = {
         loader: 'wechat-mina-loader',
         options: {
           path: r('../'),
-          dist: './mina'
+          dist: './dist'
         }
       }
     ]

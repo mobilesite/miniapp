@@ -7,7 +7,7 @@ const r = url => resolve(__dirname, url);
 
 const webpackConfig = require('./webpack.config');
 const minaConfig = require(r('./mina.config'));
-const assetsPath = r('../mina');
+const assetsPath = r('../dist');
 
 rm('-rf', assetsPath);
 mkdir(assetsPath);
@@ -24,14 +24,14 @@ renderConfig.entry = entry();
 renderConfig.entry.app = minaConfig.app;
 
 renderConfig.output = {
-  path: r('../mina'),
+  path: r('../dist'),
   filename: '[name].js'
 }
 
 var compiler = webpack(renderConfig);
 
 //写入小程序的app.json文件
-fs.writeFileSync(r('../mina/app.json'), JSON.stringify(minaConfig.json), 'utf8');
+fs.writeFileSync(r('../dist/app.json'), JSON.stringify(minaConfig.json), 'utf8');
 
 compiler.watch({
   aggregateTimeout: 300,
