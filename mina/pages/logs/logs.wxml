@@ -1,0 +1,4 @@
+
+view.container.log-list
+  block(wx:for='{{logs}}', wx:for-item='log')
+    text.log-item {{index + 1}}. {{log}}

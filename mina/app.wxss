@@ -1,0 +1,11 @@
+.container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  min-height: 100%;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  font-size: 32rpx;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif; }
+

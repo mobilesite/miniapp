@@ -1,0 +1,65 @@
+<template lang='pug'>
+  view.container
+    view.userInfo(bindTap='bindViewTap')
+      text.userinfo-nickname {{userInfo.nickName}}
+</template>
+
+<script>
+  const { regeneratorRuntime, util } = global;
+  var app = getApp();
+
+  Page({
+    data: {
+      motto: 'Hello World!',
+      userInfo: {
+        nickName: 'paian'
+      }
+    },
+    bindViewTap(){
+      wx.navigateTo({
+        url: '../logs/logs'
+      })
+    },
+    async onLoad(){
+      console.log('onLoad');
+      var that = this;
+
+      //调用应用实例的方法获取全局数据
+      const setting = await wx.getSettingAsync();
+
+      if(!setting.authSetting['scope.userInfo']) {
+        wx.authorize({
+          scope: 'scope.userInfo',
+          async success(){
+            const userInfo = await wx.getUserInfoAsync();
+
+            //更新数据
+            that.setData({
+              userInfo: userInfo.userInfo
+            })
+          }
+        })
+      }
+      
+    }
+  })
+</script>
+
+<style lang="sass">
+.userinfo
+  display: flex
+  flex-direction: column
+
+.userinfo-avatar
+  width: 128rpx
+  height: 128rpx
+  margin: 20rpx
+  border-radius: 50%
+
+.userinfo-nickname
+  color: #aaa
+
+.usermotto
+  margin-top: 200px
+
+</style>

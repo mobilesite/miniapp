@@ -1,0 +1,31 @@
+<template>
+view.container.log-list
+  block(wx:for='{{logs}}', wx:for-item='log')
+    text.log-item {{index + 1}}. {{log}}
+</template>
+
+<script>
+var util = require('../../util/util.js');
+Page({
+  data: {
+    logs: []
+  },
+  onLoad: function(){
+    this.setData({
+      logs: (wx.getStorageSync('logs') || []).map(function(log){
+        return util.formatTime(new Date(log));
+      })
+    })
+  }
+})
+</script>
+
+<style lang='sass'>
+.log-list
+  display: flex
+  flex-direction: column
+  padding: 40rpx
+
+.log-item
+  margin: 10rpx
+</style>
