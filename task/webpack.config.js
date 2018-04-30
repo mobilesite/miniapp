@@ -26,7 +26,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      utils: r('../util/util')
+      util: r('../util/util')
     }
   },
   module: {
