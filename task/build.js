@@ -1,7 +1,6 @@
 require('shelljs/global');
 const webpack = require('webpack');
 const fs = require('fs');
-const _ = require('lodash');
 const { resolve } = require('path');
 const r = url => resolve(__dirname, url); 
 
@@ -9,18 +8,18 @@ const webpackConfig = require('./webpack.config');
 const minaConfig = require(r('./mina.config'));
 const assetsPath = r('../dist');
 
+//每次打包先清除输出目录，再创建输出目录（也就是dist文件夹）
 rm('-rf', assetsPath);
 mkdir(assetsPath);
 
 var renderConfig = webpackConfig;
 
-var entry = () => _.reduce(minaConfig.json.pages, (en, i) => {
+renderConfig.entry = minaConfig.json.pages.reduce((en, i) => {
   en[i] = resolve(process.cwd(), './', `${i}.mina`)
 
   return en;
 }, {});
 
-renderConfig.entry = entry();
 renderConfig.entry.app = minaConfig.app;
 
 renderConfig.output = {

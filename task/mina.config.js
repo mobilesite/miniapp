@@ -14,7 +14,7 @@ module.exports = {
       navigationBarTextStyle: 'black'
     }
   },
-  style: {
+  style: { //似乎没有用到
     url: r('../style/base.sass'),
     lang: 'sass'
   },
